@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}Registrar Empleado{% endblock title %}
+
+
+{% block content %}
+
+{% include 'includes/header.html' %}
+<div class="grid-container">
+    <div class="grid-x">
+        <h1 class="cell">Registrar Empleado</h1>
+        <form class="cell grid-x grid-margin-x" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <div class="medium-6 cell">
+                <label for="">Nombres: {{form.first_name}}</label>
+            </div>
+            <div class="medium-6 cell">
+                <label for="">Apellido: {{form.last_name}}</label>
+            </div>
+            <div class="medium-6 cell">
+                <label for="">Trabajo: {{form.job}}</label>
+            </div>
+            <div class="medium-6 cell">
+                <label for="">Departamento: {{form.departamento}}</label>
+            </div>
+            <div class="medium-6 cell">
+                <label for="">Habilidades: {{form.habilidades}}</label>
+            </div>
+            <div class="medium-6 cell">
+                <label for="">Foto: {{form.avatar}}</label>
+            </div>
+            <!-- con forms se invoca los fields del modelo -->
+            <!-- {{ form.as_p }} -->
+            
+            <!-- método post en CreateView(enviar los datos para crear el empleado) -->
+            <div class="medium-6 cell">
+                <button type="submit" class="button success">Guardar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock content %}

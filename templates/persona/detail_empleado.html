@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+{{object.first_name}}
+{% endblock title %}
+
+{% block content %}
+{% include 'includes/header.html' %}
+
+<div class="grid-container">
+    <div class="grid-x grid-margin-x align-center">
+        <div class="cell  large-4 card" style="width: 300px; margin-top: 17px;">
+            <div class="card-divider">
+                <!-- cuando el campo es de tipo choices como job, se debe invocar de esta manera:-->
+              {{empleado.get_job_display}}
+            </div>
+            {% if empleado.avatar %}
+                <img src="{{empleado.avatar.url}}">
+            {% else %}
+                <img src="{% static 'images/user.png' %}">
+            {% endif %}
+            <div class="card-section">
+              <h4>{{empleado.full_name}}</h4>
+              <p>{{empleado.last_name}}</p>
+              <p>{{empleado.departamento.shortname}}</p>
+              <p><span class="label">Habilidades:</span></p>
+              <ul class="vertical menu">
+                {% for h in empleado.habilidades.all %}
+                    <li>{{h.habilidad}}</li>
+                {% endfor %}
+            </ul>
+            </div>
+          </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+
+
+
+{% comment %} <h1>Detalle de un empleado {{ titulo }}</h1>
+
+<!-- {{object}} se puede usar object o empleado-->
+{{empleado}}
+
+<h3>Todos los datos:</h3>
+<p>{{empleado.id}}</p>
+<p>{{empleado.first_name}}</p>
+<p>{{empleado.last_name}}</p>
+<p>{{empleado.departamento}}</p>
+<!-- <p>{{empleado.habilidades}}</p> en este caso no mostrará ya que habilidades es un campo many to many por lo cual requiere un trato diferente para invocarlo --> {% endcomment %}

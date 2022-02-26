@@ -1,0 +1,7 @@
+/venv_empleado
+/empleado/media/empleado/*.jpg
+/media
+*pyc
+/applications/departamento/migrations
+/applications/home/migrations
+/applications/persona/migrations
